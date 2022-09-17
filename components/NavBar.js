@@ -1,4 +1,4 @@
-import { Navbar, Button, Link, Text } from "@nextui-org/react";
+import { Navbar, Link, Text } from "@nextui-org/react";
 
 
 const NavBar = () => {
@@ -13,13 +13,10 @@ const NavBar = () => {
                     </Link>
                 </Navbar.Brand>
                 <Navbar.Content>
-                    <Navbar.Link href="#">Posts</Navbar.Link>
-                    <Navbar.Link href="#">About</Navbar.Link>
-                </Navbar.Content>
-                <Navbar.Content>
-                    <Navbar.Link color="inherit" href="#">
+                    <Navbar.Link color="inherit" href="/login">
                         Login
                     </Navbar.Link>
+                    <Navbar.Link href="#">About</Navbar.Link>
                 </Navbar.Content>
             </Navbar>
         </div>

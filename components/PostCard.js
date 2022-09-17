@@ -1,12 +1,14 @@
-import { Card, Col, Text, Spacer, Grid } from "@nextui-org/react";
+import { Card, Col, Text, Grid } from "@nextui-org/react";
 
 
 const PostCard = (props) => {
     return (
         <Grid xs={12} sm={4}>
+            <a href={`/post/${props.id}`}>
             <Card
                 isPressable
-                isHoverable>
+                isHoverable
+                >
                 <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
                     <Col>
                         <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA">
@@ -25,6 +27,7 @@ const PostCard = (props) => {
                     alt="Card image background"
                 />
             </Card>
+            </a>
         </Grid>
     );
 }
