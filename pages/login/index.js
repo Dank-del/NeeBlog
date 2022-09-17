@@ -12,7 +12,36 @@ export default function Login() {
         if (username == "" || password == "") {
             alert('Please enter your username and password');
         }
-        // console.log(username, password);
+        else {
+            const data = {
+                username: username,
+                password: password
+            }
+            fetch('http://localhost:3000/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.token) {
+                        localStorage.setItem('token', data.token);
+                        alert('Logged in successfully');
+                        window.location.href = '/';
+                        // router.push('/');
+                    }
+                    else {
+                        alert('Invalid username or password');
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                    alert('Error logging in');
+                })
+        }
     }
 
     return (

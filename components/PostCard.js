@@ -33,7 +33,7 @@ const PostCard = (props) => {
                         <Text size={15} weight="bold" transform="uppercase" color="#ffffffAA">
                             {props.titleSub}
                         </Text>
-                        <Text h2 color="white" style={{ textShadow: "3px 3px 3px #000000" }}>
+                        <Text h2 color="white" style={{ textShadow: "2px 2px 2px #000000" }}>
                             {props.title}
                         </Text>
                     </Col>

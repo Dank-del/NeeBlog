@@ -35,9 +35,7 @@ export async function getPost(id) {
 }
 
 export async function deletePost(id) {
-    return await Posts.deleteOne({
-        id: id
-    })
+    return await Posts.findByIdAndDelete(id)
 }
 
 export async function updatePost(id, title, titleSub, content, image) {
