@@ -2,7 +2,7 @@ import PostFeed from '../components/PostFeed';
 import Navbar from '../components/NavBar';
 
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:3000/api/posts');
+  const res = await fetch(`${process.env.API_ENDPOINT}/posts`);
   const posts = await res.json();
   console.log(posts);
   return {

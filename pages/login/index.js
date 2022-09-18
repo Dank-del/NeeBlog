@@ -17,7 +17,7 @@ export default function Login() {
                 username: username,
                 password: password
             }
-            fetch('http://localhost:3000/api/users/login', {
+            fetch(`${process.env.API_ENDPOINT}/users/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -13,6 +13,7 @@ const CreatePost = () => {
         if (localStorage.getItem('token') === null) {
             router.replace('/login')
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleClick = (e) => {
@@ -27,7 +28,7 @@ const CreatePost = () => {
                 content: content,
                 token: localStorage.getItem('token')
             }
-            fetch('http://localhost:3000/api/create', {
+            fetch(`${process.env.API_ENDPOINT}/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

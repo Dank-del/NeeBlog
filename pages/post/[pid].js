@@ -1,4 +1,4 @@
-import { Text, Image, Card, Grid, Row, Button } from '@nextui-org/react';
+import { Text, Card, Grid, Button } from '@nextui-org/react';
 import NavBar from '../../components/NavBar'
 import ReactMarkdown from 'react-markdown'
 import { styled } from "@nextui-org/react"
@@ -10,7 +10,7 @@ export const Box = styled("div", {
 });
 
 export async function getServerSideProps(context) {
-    const res = await fetch(`http://localhost:3000/api/posts/${context.params.pid}`);
+    const res = await fetch(`${process.env.API_ENDPOINT}/posts/${context.params.pid}`);
     try {
         const post = await res.json();
         return {
@@ -50,6 +50,7 @@ const Post = ({ post }) => {
 
     const [boxdiv, setBoxdiv] = useState(null);
     useEffect(() => {
+        // alert(JSON.stringify(process.env))
         const show_delete_button = false;
         if (localStorage.getItem('token') !== null) {
             show_delete_button = true;
@@ -61,7 +62,7 @@ const Post = ({ post }) => {
                         <Card>
                             <Card.Image
                                 src={post.image}
-                                objectFit="inherit"
+                                objectFit="cover"
                                 width="100%"
                                 height={340}
                                 alt="Card image background"
