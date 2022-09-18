@@ -26,12 +26,7 @@ export async function getServerSideProps(context) {
 const Post = ({ post }) => {
     const router = useRouter();
 
-    const [loggedIn, setLoggedIn] = useState(false);
-    useEffect(() => {
-        if (localStorage.getItem('token') !== null) {
-            setLoggedIn(true);
-        }
-    }, [])
+    // const [loggedIn, setLoggedIn] = useState(false);
 
     const deletePost = async () => {
         const res = await fetch(`http://localhost:3000/api/deletepost`, {
@@ -55,6 +50,10 @@ const Post = ({ post }) => {
 
     const [boxdiv, setBoxdiv] = useState(null);
     useEffect(() => {
+        const show_delete_button = false;
+        if (localStorage.getItem('token') !== null) {
+            show_delete_button = true;
+        }
         setBoxdiv(
             <Box css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
                 <Grid.Container gap={2} justify="center">
@@ -73,7 +72,7 @@ const Post = ({ post }) => {
                         <div>
                             <Text h2>{post.title}</Text>
                             <Text h4>{post.titleSub}</Text>
-                            {loggedIn && <Button onClick={deletePost} size="xs" color="error">Delete</Button>}
+                            {show_delete_button && <Button onClick={deletePost} size="xs" color="error">Delete</Button>}
                             <Text size="$lg">
                                 <ReactMarkdown>
                                     {post.content}

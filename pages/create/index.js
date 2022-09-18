@@ -24,7 +24,8 @@ const CreatePost = () => {
                 image: imageBase64,
                 title: title,
                 subheading: titleSub,
-                content: content
+                content: content,
+                token: localStorage.getItem('token')
             }
             fetch('http://localhost:3000/api/create', {
                 method: 'POST',

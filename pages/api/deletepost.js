@@ -1,6 +1,7 @@
 import connectMongo from "../../database/client"
 import { deletePost, getPost } from "../../database/methods"
 import {z} from "zod";
+import { verifyJwt } from "../../helpers/jwt";
 
 const deletePostSchema = z.object({
     _id: z.string(),
@@ -15,8 +16,9 @@ export default async function handler(req, res) {
     const { _id, token } = req.body;
     try {
         const jwtpld = verifyJwt(token);
-        console.log('New post by ' + jwtpld.username);
+        console.log('Delete post by ' + jwtpld);
     } catch (e) {
+        console.log(e);
         return res.status(401).json({ message: "Invalid token" });
     }
     connectMongo();
