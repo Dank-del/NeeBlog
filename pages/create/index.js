@@ -1,5 +1,5 @@
 import NavBar from "../../components/NavBar";
-import { Grid, Input, Textarea, Button } from "@nextui-org/react";
+import { Grid, Input, Textarea, Button, Spacer } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
@@ -13,7 +13,7 @@ const CreatePost = () => {
         if (localStorage.getItem('token') === null) {
             router.replace('/login')
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleClick = (e) => {
@@ -81,25 +81,22 @@ const CreatePost = () => {
     return (
         <div>
             <NavBar />
-            <div style={{ padding: '9px' }}>
-                <Grid.Container gap={4} style={{ "display": "flex", "justifyContent": "center", "padding": "50px 0" }}>
-                    <Grid>
-                        <Input onChange={(e) => setTitle(e.target.value)} labelPlaceholder="Title" />
-                    </Grid>
-                    <Grid>
-                        <Input onChange={(e) => setTitleSub(e.target.value)} labelPlaceholder="Sub heading" />
-                    </Grid>
-                    <Grid>
-                        <input onChange={handleImageChange} id='imageId' type='file' accept="image/*" hidden />
-                        <Textarea onChange={(e) => setContent(e.target.value)} labelPlaceholder="Content" />
-                    </Grid>
-                    <Grid>
-                        <Button.Group>
-                            <Button onPress={openDialog}>Upload Image</Button>
-                            <Button onPress={handleClick}>Post</Button>
-                        </Button.Group>
-                    </Grid>
-                </Grid.Container>
+            <div style={{ margin: '5px 3vw 2px 3vw', display: 'grid',  padding: '9px' }}>
+                <Spacer y={0.7}></Spacer>
+                <Input onChange={(e) => setTitle(e.target.value)} labelPlaceholder="Title" />
+                <Spacer y={2}></Spacer>
+                <Input onChange={(e) => setTitleSub(e.target.value)} labelPlaceholder="Sub heading" />
+                <Spacer y={2}></Spacer>
+                <Textarea onChange={(e) => setContent(e.target.value)} labelPlaceholder="Content" />
+                <Spacer y={2}></Spacer>
+                <div style={{ display: 'flex', direction: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                <input onChange={handleImageChange} id='imageId' type='file' accept="image/*" hidden />
+                    <Button.Group>
+                        <Button onPress={openDialog}>Upload Image</Button>
+                        <Button onPress={handleClick}>Post</Button>
+                    </Button.Group>
+                </div>
+                {/* Done */}
             </div>
         </div>
     );
