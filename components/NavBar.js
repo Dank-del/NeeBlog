@@ -20,7 +20,7 @@ const NavBar = () => {
                 <Navbar.Brand>
                     <Link color="inherit" href="/">
                         <Text b color="inherit" size={30}>
-                            سيتا هارو
+                            سيتّا هارو
                         </Text>
                     </Link>
                 </Navbar.Brand>
