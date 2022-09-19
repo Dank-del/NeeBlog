@@ -4,7 +4,7 @@ import Navbar from '../components/NavBar';
 export async function getServerSideProps() {
   const res = await fetch(`${process.env.API_ENDPOINT}/posts`);
   const posts = await res.json();
-  console.log(posts);
+  // console.log(posts);
   return {
       props: { posts }, // will be passed to the page component as props
   }

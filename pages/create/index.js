@@ -69,7 +69,7 @@ const CreatePost = () => {
             try {
                 const uploadedImageBase64 = await convertFileToBase64(e.target.files[0]);
                 setImageBase64(uploadedImageBase64);
-                console.log(uploadedImageBase64);
+                // console.log(uploadedImageBase64);
                 //do something with above data string 
             } catch (err) {
                 //handle error

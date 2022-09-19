@@ -2,6 +2,7 @@ import connectMongo from "../../database/client";
 import { newPost } from "../../database/methods";
 import { z } from "zod";
 import { verifyJwt } from "../../helpers/jwt";
+import { setCors } from "../../helpers/cors";
 
 export const config = {
     api: {
@@ -20,6 +21,7 @@ const createPostSchema = z.object({
 });
 
 export default async function handler(req, res) {
+    await setCors(req, res)
     // validate the request body
     const validatedBody = createPostSchema.safeParse(req.body);
     // if the request body is invalid, return an error

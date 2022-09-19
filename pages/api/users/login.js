@@ -2,6 +2,7 @@ import connectMongo from "../../../database/client";
 import { IsValidUser } from "../../../database/methods";
 import { z } from "zod";
 import jwt from "jsonwebtoken";
+import { setCors } from "../../../helpers/cors";
 
 const loginSchema = z.object({
     username: z.string(),
@@ -10,6 +11,7 @@ const loginSchema = z.object({
 
 
 export default async function handler(req, res) {
+    await setCors(req, res)
     const validatedBody = loginSchema.safeParse(req.body);
     if (!validatedBody.success) {
         return res.status(400).json(validatedBody.error);

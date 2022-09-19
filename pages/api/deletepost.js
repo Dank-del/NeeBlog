@@ -2,6 +2,7 @@ import connectMongo from "../../database/client"
 import { deletePost, getPost } from "../../database/methods"
 import {z} from "zod";
 import { verifyJwt } from "../../helpers/jwt";
+import { setCors } from "../../helpers/cors";
 
 const deletePostSchema = z.object({
     _id: z.string(),
@@ -9,6 +10,7 @@ const deletePostSchema = z.object({
 })
 
 export default async function handler(req, res) {
+    await setCors(req, res)
     const validatedBody = deletePostSchema.safeParse(req.body);
     if (!validatedBody.success) {
         return res.status(400).json(validatedBody.error);

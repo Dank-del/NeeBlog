@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { fetchUser, newUser } from "../../../database/methods";
+import { setCors } from "../../../helpers/cors";
 
 const addUserSchema = z.object({
     username: z.string(),
@@ -8,6 +9,7 @@ const addUserSchema = z.object({
 })
 
 export default async function handler(req, res) {
+    await setCors(req, res)
     const validatedBody = addUserSchema.safeParse(req.body);
     if (!validatedBody.success) {
         return res.status(400).json(validatedBody.error);
