@@ -51,14 +51,14 @@ export default function Login() {
                 {/* <h3 className="center" style={{paddingBottom: "19%"}}>Admin login</h3> */}
                 <div className="center" style={{ paddingTop: "30%" }}>
                     <Input size="md"
-                        labelLeft="@"
-                        labelPlaceholder=""
+                        labelRight="@"
+                        labelPlaceholder="Username"
                         onChange={(e) => setUsername(e.target.value)}
                     />
                     <Spacer y={1.6} />
                     <Input.Password labelPlaceholder="Password" onChange={(e) => setPassword(e.target.value)} />
                     <Spacer y={1.6} />
-                    <Button onPress={(e) => handleClick(e)}>Log in</Button>
+                    <Button style={{width: '100%'}} onPress={(e) => handleClick(e)}>Log in</Button>
                 </div>
             </div>
         </div>
