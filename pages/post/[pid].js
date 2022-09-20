@@ -29,7 +29,7 @@ const Post = ({ post }) => {
     // const [loggedIn, setLoggedIn] = useState(false);
 
     const deletePost = async () => {
-        const res = await fetch(`http://localhost:3000/api/deletepost`, {
+        const res = await fetch(`${process.env.API_ENDPOINT}/deletepost`, {
             method: 'POST',
             body: JSON.stringify({ _id: post._id, token: localStorage.getItem('token') }),
             headers: {
