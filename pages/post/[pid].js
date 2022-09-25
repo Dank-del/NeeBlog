@@ -62,9 +62,9 @@ const Post = ({ post }) => {
                         <Card>
                             <Card.Image
                                 src={post.image}
-                                objectFit="cover"
-                                width="100%"
-                                height={340}
+                                objectFit="contain"
+                                // width="100%"
+                                // height={340}
                                 alt="Card image background"
                             />
                         </Card>
