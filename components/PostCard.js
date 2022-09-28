@@ -26,6 +26,7 @@ const PostCard = (props) => {
                 isHoverable
                 isPressable
                 onPress={handleReadMore}
+                onClick={handleReadMore}
                 // onPressUp={handleShare}
             >
                 <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
