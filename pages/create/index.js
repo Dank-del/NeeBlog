@@ -1,7 +1,9 @@
 import NavBar from "../../components/NavBar";
-import { Grid, Input, Textarea, Button, Spacer } from "@nextui-org/react";
+import { Input, Textarea, Button, Spacer } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { getCookie } from "cookies-next";
+import Head from "next/head";
 
 const CreatePost = () => {
     const router = useRouter();
@@ -10,7 +12,7 @@ const CreatePost = () => {
     const [titleSub, setTitleSub] = useState("");
     const [content, setContent] = useState("");
     useEffect(() => {
-        if (localStorage.getItem('token') === null) {
+        if (getCookie('token') === null) {
             router.replace('/login')
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,9 +28,9 @@ const CreatePost = () => {
                 title: title,
                 subheading: titleSub,
                 content: content,
-                token: localStorage.getItem('token')
+                token: getCookie('token')
             }
-            fetch(`${process.env.API_ENDPOINT}/create`, {
+            fetch(`/api/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -81,6 +83,9 @@ const CreatePost = () => {
     return (
         <div>
             <NavBar />
+            <Head>
+                <title>Create New Post</title>
+            </Head>
             <div style={{ margin: '5px 3vw 2px 3vw', display: 'grid',  padding: '9px' }}>
                 <Spacer y={0.7}></Spacer>
                 <Input onChange={(e) => setTitle(e.target.value)} labelPlaceholder="Title" />

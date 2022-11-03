@@ -1,6 +1,8 @@
 import NavBar from "../../components/NavBar";
 import { Input, Spacer, Button } from "@nextui-org/react";
 import react from "react";
+import { setCookie } from 'cookies-next';
+import Head from "next/head";
 
 export default function Login() {
     const [username, setUsername] = react.useState("");
@@ -17,7 +19,7 @@ export default function Login() {
                 username: username,
                 password: password
             }
-            fetch(`${process.env.API_ENDPOINT}/users/login`, {
+            fetch(`/api/users/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -28,7 +30,8 @@ export default function Login() {
                 .then(data => {
                     console.log(data);
                     if (data.token) {
-                        localStorage.setItem('token', data.token);
+                        // localStorage.setItem('token', data.token);
+                        setCookie('token', data.token);
                         alert('Logged in successfully');
                         window.location.href = '/';
                         // router.push('/');
@@ -46,6 +49,9 @@ export default function Login() {
 
     return (
         <div>
+            <Head>
+                <title>Login</title>
+            </Head>
             <NavBar />
             <div className="container">
                 {/* <h3 className="center" style={{paddingBottom: "19%"}}>Admin login</h3> */}

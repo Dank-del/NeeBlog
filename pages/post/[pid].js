@@ -4,13 +4,20 @@ import ReactMarkdown from 'react-markdown'
 import { styled } from "@nextui-org/react"
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { getCookie } from 'cookies-next';
+import Head from 'next/head';
 
 export const Box = styled("div", {
     boxSizing: "border-box",
 });
 
 export async function getServerSideProps(context) {
-    const res = await fetch(`${process.env.API_ENDPOINT}/posts/${context.params.pid}`);
+    // console.log(context);
+    const { req } = context;
+    let url = req.headers.referer;
+    let arr = url.split('/');
+    url = `${arr[0]}//${arr[2]}`;
+    const res = await fetch(`${url}/api/posts/${context.params.pid}`);
     try {
         const post = await res.json();
         return {
@@ -29,9 +36,9 @@ const Post = ({ post }) => {
     // const [loggedIn, setLoggedIn] = useState(false);
 
     const deletePost = async () => {
-        const res = await fetch(`${process.env.API_ENDPOINT}/deletepost`, {
+        const res = await fetch(`/api/deletepost`, {
             method: 'POST',
-            body: JSON.stringify({ _id: post._id, token: localStorage.getItem('token') }),
+            body: JSON.stringify({ _id: post._id, token: getCookie('token') }),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -52,7 +59,7 @@ const Post = ({ post }) => {
     useEffect(() => {
         // alert(JSON.stringify(process.env))
         const show_delete_button = false;
-        if (localStorage.getItem('token') !== null) {
+        if (getCookie('token') !== null) {
             show_delete_button = true;
         }
         setBoxdiv(
@@ -89,6 +96,9 @@ const Post = ({ post }) => {
 
     return (
         <div>
+            <Head>
+                <title>{post.title}</title>
+            </Head>
             <NavBar />
             {post &&
                 boxdiv}

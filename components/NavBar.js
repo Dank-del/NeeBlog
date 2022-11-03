@@ -1,16 +1,16 @@
 import { Navbar, Link, Text } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-
+import { getCookie, deleteCookie } from 'cookies-next';
 
 const NavBar = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     const handlelogout = () => {
-        localStorage.removeItem('token');
+        deleteCookie('token');
         setLoggedIn(false);
     }
     useEffect(() => {
         // console.log(localStorage.getItem('token'));
-        if (localStorage.getItem('token') !== null) {
+        if (getCookie('token') !== null) {
             setLoggedIn(true);
         }
     }, [])
@@ -20,7 +20,7 @@ const NavBar = () => {
                 <Navbar.Brand>
                     <Link color="inherit" href="/">
                         <Text b color="inherit" size={30}>
-                            سيتّا هارو
+                            سيتّا هارو 
                         </Text>
                     </Link>
                 </Navbar.Brand>
