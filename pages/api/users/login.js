@@ -3,6 +3,7 @@ import { IsValidUser } from "../../../database/methods";
 import { z } from "zod";
 import jwt from "jsonwebtoken";
 import { setCors } from "../../../helpers/cors";
+import { User } from "../../../database/models";
 
 const loginSchema = z.object({
     username: z.string(),
@@ -28,5 +29,6 @@ export default async function handler(req, res) {
         expiresIn: "1d",
     });
 
-    res.json({ token });
+    const user = await User.findOne({ username: username });
+    res.json({ token, user });
 }

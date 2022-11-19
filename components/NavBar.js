@@ -1,19 +1,16 @@
 import { Navbar, Link, Text } from "@nextui-org/react";
-import { useEffect, useState } from "react";
-import { getCookie, deleteCookie } from 'cookies-next';
+import { useContext } from "react";
+import { deleteCookie } from 'cookies-next';
+import { AuthContext } from "../helpers/context";
 
 const NavBar = () => {
-    const [loggedIn, setLoggedIn] = useState(false);
+    const auth = useContext(AuthContext);
     const handlelogout = () => {
         deleteCookie('token');
-        setLoggedIn(false);
+        auth.setLoggedIn(false);
     }
-    useEffect(() => {
-        // console.log(localStorage.getItem('token'));
-        if (getCookie('token') !== null) {
-            setLoggedIn(true);
-        }
-    }, [])
+    // console.log(auth);
+
     return (
         <div style={{ "position": "sticky", "top": "0px", "zIndex": "1" }}>
             <Navbar isBordered variant='floating'>
@@ -26,13 +23,13 @@ const NavBar = () => {
                 </Navbar.Brand>
                 <Navbar.Content>
                     {
-                        !loggedIn &&
+                        !auth.loggedIn &&
                         <Navbar.Link color="inherit" href="/login">
                             Login
                         </Navbar.Link>
                     }
-                    {loggedIn && <Navbar.Link href="/create">Post</Navbar.Link>}
-                    {loggedIn && <Navbar.Link onPress={handlelogout}>Logout</Navbar.Link>}
+                    {auth.loggedIn && <Navbar.Link href="/create">Post</Navbar.Link>}
+                    {auth.loggedIn && <Navbar.Link onPress={handlelogout}>Logout</Navbar.Link>}
                 </Navbar.Content>
             </Navbar>
         </div>

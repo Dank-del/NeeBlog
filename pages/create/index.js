@@ -11,7 +11,8 @@ const CreatePost = () => {
     const [titleSub, setTitleSub] = useState("");
     const [content, setContent] = useState("");
     useEffect(() => {
-        if (getCookie('token') === null) {
+        console.log(getCookie('token'))
+        if (getCookie('token') === undefined) {
             router.replace('/login')
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
