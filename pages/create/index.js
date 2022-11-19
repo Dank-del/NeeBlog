@@ -1,4 +1,3 @@
-import NavBar from "../../components/NavBar";
 import { Input, Textarea, Button, Spacer } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -82,7 +81,6 @@ const CreatePost = () => {
 
     return (
         <div>
-            <NavBar />
             <Head>
                 <title>Create New Post</title>
             </Head>

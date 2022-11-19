@@ -1,4 +1,3 @@
-import NavBar from "../../components/NavBar";
 import { Input, Spacer, Button } from "@nextui-org/react";
 import react from "react";
 import { setCookie } from 'cookies-next';
@@ -52,7 +51,6 @@ export default function Login() {
             <Head>
                 <title>Login</title>
             </Head>
-            <NavBar />
             <div className="container">
                 {/* <h3 className="center" style={{paddingBottom: "19%"}}>Admin login</h3> */}
                 <div className="center" style={{ paddingTop: "30%" }}>
@@ -64,7 +62,7 @@ export default function Login() {
                     <Spacer y={1.6} />
                     <Input.Password labelPlaceholder="Password" onChange={(e) => setPassword(e.target.value)} />
                     <Spacer y={1.6} />
-                    <Button style={{width: '100%'}} onPress={(e) => handleClick(e)}>Log in</Button>
+                    <Button style={{ width: '100%' }} onPress={(e) => handleClick(e)}>Log in</Button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,4 @@
 import PostFeed from '../components/PostFeed';
-import Navbar from '../components/NavBar';
 import Head from "next/head";
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -18,7 +17,6 @@ export default function Home() {
         <meta name="author" content="Sayan Biswas" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <Navbar />
       <PostFeed posts={posts}/>
     </div>
   )

@@ -1,5 +1,4 @@
 import { Text, Card, Grid, Button } from '@nextui-org/react';
-import NavBar from '../../components/NavBar'
 import ReactMarkdown from 'react-markdown'
 import { styled } from "@nextui-org/react"
 import { useEffect, useState } from 'react';
@@ -99,7 +98,6 @@ const Post = ({ post }) => {
             <Head>
                 <title>{post.title}</title>
             </Head>
-            <NavBar />
             {post &&
                 boxdiv}
         </div>
