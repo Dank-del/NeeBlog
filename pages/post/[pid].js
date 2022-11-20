@@ -7,6 +7,7 @@ import { getCookie } from 'cookies-next';
 import Head from 'next/head';
 import { useContext } from 'react';
 import { AuthContext } from '../../helpers/context';
+import { Posts } from '../../database/models';
 
 export const Box = styled("div", {
     boxSizing: "border-box",
@@ -14,15 +15,16 @@ export const Box = styled("div", {
 
 export async function getServerSideProps(context) {
     // console.log(context);
-    const { req } = context;
-    let url = req.headers.referer;
-    let arr = url.split('/');
-    url = `${arr[0]}//${arr[2]}`;
-    const res = await fetch(`${url}/api/posts/${context.params.pid}`);
     try {
-        const post = await res.json();
+        const p = await Posts.findOne({ _id: context.params.pid });
         return {
-            props: { post }, // will be passed to the page component as props
+            props: { post: {
+                title: p.title,
+                titleSub: p.titleSub,
+                content: p.content,
+                image: p.image,
+                _id: context.params.pid
+            } }, // will be passed to the page component as props
         }
     }
     catch (err) {
