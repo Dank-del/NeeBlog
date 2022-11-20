@@ -4,7 +4,7 @@ import { setCors } from "../../../helpers/cors";
 
 export default async function handler(req, res) {
     await setCors(req, res);
-    connectMongo()
+    connectMongo();
     const { pid } = req.query;
     const post = await getPost(pid);
     if (!post) {
