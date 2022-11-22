@@ -18,13 +18,15 @@ export async function getServerSideProps(context) {
     try {
         const p = await Posts.findOne({ _id: context.params.pid });
         return {
-            props: { post: {
-                title: p.title,
-                titleSub: p.titleSub,
-                content: p.content,
-                image: p.image,
-                _id: context.params.pid
-            } }, // will be passed to the page component as props
+            props: {
+                post: {
+                    title: p.title,
+                    titleSub: p.titleSub,
+                    content: p.content,
+                    image: p.image,
+                    _id: context.params.pid
+                }
+            }, // will be passed to the page component as props
         }
     }
     catch (err) {
@@ -74,7 +76,9 @@ const Post = ({ post }) => {
         setBoxdiv(
             <Box css={{ px: "$12", mt: "$8", "@xsMax": { px: "$10" } }}>
                 <Grid.Container gap={2} justify="center">
-                    <Grid xs={12} sm={4}>
+                    <Grid style={{
+                        height: "fit-content",
+                    }} xs={12} sm={4}>
                         <Card>
                             <Card.Image
                                 src={post.image}
@@ -85,20 +89,34 @@ const Post = ({ post }) => {
                             />
                         </Card>
                     </Grid>
-                    <Grid xs={12} sm={4}>
+                    <Grid style={{
+                        display: "flex",
+                        justifyContent: "center",
+
+                    }} xs={12} sm={4}>
                         <div>
-                            <Text h2>{post.title}</Text>
-                            <Text h4>{post.titleSub}</Text>
+                            <div style={{
+                                textAlign: "center",
+                            }}>
+                                <Text h2>{post.title}</Text>
+                                <Text h4>{post.titleSub}</Text>
+                            </div>
                             <Container>
-                                <Row>
-                                    {show_delete_button && <Button onPress={deletePost} size="sm" style={{backgroundColor: "red"}}>Delete</Button>}
-                                    <Spacer z={0.5}/>
+                                <Row style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                }}>
+                                    {show_delete_button && <Button onPress={deletePost} size="sm" style={{ backgroundColor: "red" }}>Delete</Button>}
+                                    <Spacer z={0.5} />
                                     {show_delete_button && <Button onPress={
-                                       () => router.push(`/edit/${post._id}`)
-                                    } size="sm" style={{backgroundColor: "green"}}>Edit</Button>}
+                                        () => router.push(`/edit/${post._id}`)
+                                    } size="sm" style={{ backgroundColor: "green" }}>Edit</Button>}
                                 </Row>
                             </Container>
-                            <Text size="$lg">
+                            <Text style={{
+                                marginLeft: "5px",
+                                marginRight: "5px",
+                            }} size="$lg">
                                 <ReactMarkdown>
                                     {post.content}
                                 </ReactMarkdown>
