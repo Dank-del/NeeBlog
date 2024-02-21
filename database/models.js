@@ -12,5 +12,5 @@ const postSchema = new mongoose.Schema({
     image: String
 })
 
-export const User = mongoose.models.User ? mongoose.models.User : mongoose.model("User",userSchema);
-export const Posts = mongoose.models.Posts ? mongoose.models.Posts : mongoose.model("Posts",postSchema);
+export const User = mongoose.models.User || mongoose.model("User",userSchema);
+export const Posts = mongoose.models.Posts || mongoose.model("Posts",postSchema);

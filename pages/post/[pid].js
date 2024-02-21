@@ -69,7 +69,7 @@ const Post = ({ post }) => {
         console.log(auth);
 
         // alert(JSON.stringify(process.env))
-        const show_delete_button = false;
+        let show_delete_button = false;
         if (getCookie('token') !== undefined) {
             show_delete_button = true;
         }
